@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+requests
+aiologger
+aiofiles
+python-dotenv
+pydantic-settings
+sqlalchemy
+aiosqlite
+alembic
+passlib
+PyJWT
+python-multipart
+httpx
