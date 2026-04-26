@@ -1,6 +1,6 @@
 # app/modules/notes/model.py
 
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from app.utils.database import Base
 
@@ -22,6 +22,7 @@ class Note(Base):
     title = Column(String(100), nullable=False)
     content = Column(Text, nullable=False)
     user_id = Column(Integer, ForeignKey("user.id"), nullable=True)
-
+    created_at = Column(DateTime(timezone=True), nullable=True)
+    
     # Связь с пользователем
     user = relationship("User", back_populates="notes")

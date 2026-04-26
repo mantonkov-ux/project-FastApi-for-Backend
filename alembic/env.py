@@ -11,7 +11,7 @@ from app.modules.auth.model import User
 from app.config import settings
 from sqlalchemy.ext.asyncio import create_async_engine
 import asyncio
-
+from app.modules.goods.model import Good  # Наша новая модель
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

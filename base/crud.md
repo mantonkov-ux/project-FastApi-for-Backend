@@ -83,3 +83,40 @@ SET content = 'Купить хлеб'
 WHERE id = <note_id>
   AND user_id = {user_id};
 ```
+## Работа с датами и временем
+
+Текущая дата: {current_date}
+
+Если пользователь просит показать заметки за определённый период, генерируй SQL с фильтром по полю `created_at`:
+
+### Примеры запросов:
+
+**"Покажи заметки за текущий месяц"**
+```sql
+SELECT * FROM note 
+WHERE user_id = {user_id}
+AND strftime('%Y-%m', created_at) = strftime('%Y-%m', 'now')
+
+**"Покажи заметки за прошлый месяц"**
+```sql
+SELECT * FROM note 
+WHERE user_id = {user_id}
+AND strftime('%Y-%m', created_at) = strftime('%Y-%m', 'now', '-1 month')
+
+**"Покажи заметки за январь 2026 года"**
+```sql
+SELECT * FROM note 
+WHERE user_id = {user_id}
+AND strftime('%Y-%m', created_at) = '2026-01'
+
+**"Покажи заметки за последнюю неделю"**
+```sql
+SELECT * FROM note 
+WHERE user_id = {user_id}
+AND created_at >= datetime('now', '-7 days')
+
+**"Покажи заметки за сегодня"**
+```sql
+SELECT * FROM note 
+WHERE user_id = {user_id}
+AND date(created_at) = date('now')
